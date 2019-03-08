@@ -44,11 +44,6 @@ user_groups = ["Researchers", "Visitors"]
   institution = "Chandigarh Engineering College, India"
   year = 2014
 
-[[education.courses]]
-  course = "BSc in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
-  year = 2008
-
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/widgets/#icons
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
@@ -59,20 +54,15 @@ user_groups = ["Researchers", "Visitors"]
   icon_pack = "fas"
   link = "#contact"  # For a direct email link, use "mailto:test@example.org".
 
-[[social]]
-  icon = "twitter"
-  icon_pack = "fab"
-  link = "https://twitter.com/GeorgeCushen"
-
-[[social]]
-  icon = "google-scholar"
-  icon_pack = "ai"
-  link = "https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ"
+#[[social]]
+#  icon = "twitter"
+#  icon_pack = "fab"
+#  link = "https://twitter.com/GeorgeCushen"
 
 [[social]]
   icon = "github"
   icon_pack = "fab"
-  link = "https://github.com/gcushen"
+  link = "https://github.com/Guneev9"
 
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
@@ -83,4 +73,4 @@ user_groups = ["Researchers", "Visitors"]
 
 +++
 
-An avid lover of animals, a data enthusiast by choice and an artist by nature. Guneev was born and raised in New Delhi, India where she completed her High School and Bachelor's Degree.Shortly after graduation, she started working as Business Intelligence Developer at Teksystems, India. Later, she came to realize her interests in the analysis and problem solving aspect of data and decided to join the Masters Degree program to quench her growing desire in data exploration. From the start of her journey, she was been able to go a step further towards actualizing her career aspiration of being a thought leader in the field of business intelligence and software engineering. \ she has acquired new knowledge and unforgettable experiences.She also joined Siemens Healthineers, New Jersey as an Intern part to gather healthcare experience. She is a jovial individual with the soft spot for disney.She spend her free time with sketching, painting ad cooking. 
+An avid lover of animals, a data enthusiast by choice and an artist by nature. Guneev was born and raised in New Delhi, India where she completed her High School and Bachelor's Degree. Shortly after graduation, she started working as Business Intelligence Developer at Teksystems, India. Later, she came to realize her interests in the analysis and problem solving aspect of data and decided to join the Masters Degree program to quench her growing desire in data exploration. From the start of her journey, she was been able to go a step further towards actualizing her career aspiration of being a thought leader in the field of business intelligence and software engineering. She has acquired new knowledge and unforgettable experiences.She also joined Siemens Healthineers, New Jersey as an Intern part to gather healthcare experience. She is a jovial individual with the soft spot for disney. She spends her free time with sketching, painting ad cooking. 
