@@ -1,6 +1,6 @@
 +++
 # Display name
-name = "Nelson Bighetti"
+name = "Guneev Kaur"
 
 # Username (this should match the folder name)
 authors = ["admin"]
@@ -9,23 +9,24 @@ authors = ["admin"]
 superuser = true
 
 # Role/position
-role = "Professor of Artificial Intelligence"
+role = "Graduate Student at Syracuse University"
 
 # Organizations/Affiliations
 #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-organizations = [ { name = "Stanford University", url = "" } ]
+organizations = [ { name = "Syracuse University", url = "" } ]
 
 # Short bio (displayed in user profile at end of posts)
-bio = "My research interests include distributed robotics, mobile computing and programmable matter."
+# bio = "My research interests include distributed robotics, mobile computing and programmable matter."
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email = ""
+email = "kaurguneev@gmail.com"
 
 # List (academic) interests or hobbies
 interests = [
-  "Artificial Intelligence",
-  "Computational Linguistics",
-  "Information Retrieval"
+  "Business Intelligence", 
+  "Data Mining", 
+  "Painting", 
+  "Art & Craft" 
 ]
 
 # Organizational groups that you belong to (for People widget)
@@ -34,14 +35,14 @@ user_groups = ["Researchers", "Visitors"]
 
 # List qualifications (such as academic degrees)
 [[education.courses]]
-  course = "PhD in Artificial Intelligence"
-  institution = "Stanford University"
-  year = 2012
+  course = "MS in Computer Science"
+  institution = "Syracuse University"
+  year = 2018
 
 [[education.courses]]
-  course = "MEng in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
-  year = 2009
+  course = "B. Tech. in Information Technology"
+  institution = "Chandigarh Engineering College, India"
+  year = 2014
 
 [[education.courses]]
   course = "BSc in Artificial Intelligence"
@@ -82,6 +83,4 @@ user_groups = ["Researchers", "Visitors"]
 
 +++
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate. 
+An avid lover of animals, a data enthusiast by choice and an artist by nature. Guneev was born and raised in New Delhi, India where she completed her High School and Bachelor's Degree.Shortly after graduation, she started working as Business Intelligence Developer at Teksystems, India. Later, she came to realize her interests in the analysis and problem solving aspect of data and decided to join the Masters Degree program to quench her growing desire in data exploration. From the start of her journey, she was been able to go a step further towards actualizing her career aspiration of being a thought leader in the field of business intelligence and software engineering. \ she has acquired new knowledge and unforgettable experiences.She also joined Siemens Healthineers, New Jersey as an Intern part to gather healthcare experience. She is a jovial individual with the soft spot for disney.She spend her free time with sketching, painting ad cooking. 
