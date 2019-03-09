@@ -19,27 +19,36 @@ date_format = "January 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "CEO"
-  company = "GenCoin"
-  company_url = ""
-  location = "California"
-  date_start = "2017-01-01"
-  date_end = ""
+  title = "Software Engineer Intern"
+  company = "Siemens Healthineers"
+  company_url = "https://usa.healthcare.siemens.com/"
+  location = "New Jersey"
+  date_start = "2018-06-11"
+  date_end = "2018-12-14"
   description = """
+  
   Responsibilities include:
   
-  * Analysing
-  * Modelling
-  * Deploying
+  * Provide automated testing services that adhere to QA compliance and standards
+  * Used SCRUM for Agile development and participated in planning, design and development
+  * Developed reusable VB scripts to completely automate User Interaction(UI) for internal WPF application 
   """
 
 [[experience]]
-  title = "Professor"
-  company = "University X"
-  company_url = ""
-  location = "California"
-  date_start = "2016-01-01"
-  date_end = "2016-12-31"
-  description = """Taught electronic engineering and researched semiconductor physics."""
+  title = "Business Intelligence Developer"
+  company = "Teksystems"
+  company_url = "https://www.teksystems.com/en"
+  location = "India"
+  date_start = "2014-06-02"
+  date_end = "2016-12-02"
+  description = """
+  
+  Responsibilities include:
+  
+  * Create ETL mappings with complex business logic for high volume data loads
+  * Implemented Relational and Dimensional modeling techniques of Data warehouse concepts and principles. 
+  * Analyzed mapping sessions log files to resolve error in mapping and identified bottlenecks and tuned them for optimal performance
+  
+  """
 
 +++
