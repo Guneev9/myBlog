@@ -73,6 +73,8 @@ user_groups = []
 
 +++
 
-An avid lover of animals, a data enthusiast by choice and an artist by nature. Guneev was born and raised in New Delhi, India where she completed her High School and Bachelor's Degree. Shortly after graduation, she started working as Business Intelligence Developer at Teksystems, India.  \\
-Later, she came to realize her interests in the analysis and problem solving aspect of data and decided to join the Masters Degree program to quench her growing desire in data exploration. From the start of her journey, she was been able to go a step further towards actualizing her career aspiration of being a thought leader in the field of business intelligence and software engineering. She has acquired new knowledge and unforgettable experiences.She also joined Siemens Healthineers, New Jersey as an Intern part to gather healthcare experience. \\
-She is a jovial individual with the soft spot for disney. She spends her free time with sketching, painting ad cooking. 
+An avid lover of animals, a data enthusiast by choice and an artist by nature. Guneev was born and raised in New Delhi, India where she completed her High School and Bachelor’s Degree. Shortly after graduation, she started working as Business Intelligence Developer at Teksystems, India.  
+
+Realizing her interests in data analysis and problem-solving, Guneev decided to pursue it further through a Master's degree. From the start of her journey, she has had an aspiration of being a thought leader in the field of business intelligence. She has acquired new knowledge and unforgettable experiences in actualizing this. Her recent step in that direction has been gaining healthcare experience as an intern at Siemens Healthineers, New Jersey. 
+
+Guneev is a jovial individual with a soft spot for disney. She spends her free time with sketching, painting ad cooking.
