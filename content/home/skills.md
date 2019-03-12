@@ -16,21 +16,93 @@ weight = 30
 # For available icons, see: https://sourcethemes.com/academic/docs/widgets/#icons
 
 [[feature]]
-  icon = "r-project"
-  icon_pack = "fab"
+  icon = ""
+  icon_pack = ""
+  name = "MYSQL"
+  description = ""
+  
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "C++"
+  description = ""  
+  
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "Python"
+  description = "" 
+
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "ETL"
+  description = "" 
+  
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "ELT"
+  description = "" 
+  
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "Test Automation"
+  description = "" 
+
+[[feature]]
+  icon = ""
+  icon_pack = ""
   name = "R"
-  description = "90%"
+  description = ""
+
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "Tableau"
+  description = ""
   
 [[feature]]
-  icon = "chart-line"
-  icon_pack = "fas"
-  name = "Statistics"
-  description = "100%"  
+  icon = ""
+  icon_pack = ""
+  name = "Microsoft Excel"
+  description = ""
+
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "Microsoft Visio"
+  description = "" 
+
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "NLP"
+  description = "" 
   
 [[feature]]
-  icon = "camera-retro"
-  icon_pack = "fas"
-  name = "Photography"
-  description = "10%"
+  icon = ""
+  icon_pack = ""
+  name = "Oracle"
+  description = "" 
+
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "Latex"
+  description = ""  
+
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "C#"
+  description = ""   
+
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "VBScript"
+  description = ""
 
 +++

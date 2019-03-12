@@ -17,16 +17,16 @@
   name = "Projects"
   url = "#projects"
   weight = 30
-  
+
 [[main]]
   name = "Post"
   url = "#posts"
   weight = 40
 
-#[[main]]
-#  name = "Publications"
-#  url = "#featured"
-#  weight = 40
+[[main]]
+ name = "Skills"
+ url = "#skills"
+ weight = 15
 
 [[main]]
   name = "Artwork"

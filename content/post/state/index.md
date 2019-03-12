@@ -1,6 +1,6 @@
 +++
-title = "Academic: the website designer for Hugo"
-subtitle = "Create a beautifully simple website in under 10 minutes :rocket:"
+title = "Exploring state of Union Addresses Data"
+subtitle = "Analysis of state of Union Addresses"
 
 date = 2016-04-20T00:00:00
 lastmod = 2018-01-13T00:00:00
@@ -9,8 +9,8 @@ draft = false
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["admin"]
 
-tags = ["Academic"]
-summary = "Create a beautifully simple website or blog in under 10 minutes."
+tags = ["NLP","NLTK", "Bigrams", "Tokenize","Glutenberg","StopWords","Lemmatization","Words"]
+summary = "Used NLP techniques to analyze Annual US addresses given by the President "
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.
@@ -76,123 +76,286 @@ image = "theme-cupcake.png"
 caption = "Cupcake"
 +++
 
+## State Of Union Data Set
+The State of the Union Addresses dataset is a collection of annual speeches delivered by the presidents of the United States, from George Washington to Barack Obama, to a joint session of the United States Congress for the span of 1790-2016. This dataset contains the two texts combined, which are small subsets of the Project Gutenberg Ebook corpus. Here is the Project Gutenberg Ebook [web page](http://www.gutenberg.org/)
+
+Data can be found at the link [Source Data](https://github.com/Guneev9/State-of-the-Union-Addresses-NLP-)
+
+Both the files are written by the same author 'James Linden'. Every message has sections indicating to whom it is being cited. Naming Convention: Content of files have index convention: President Name followed by Title "State of Union Address" followed by the Date, when message has been delivered. The messages have been sorted on basis of year, it is being delivered. Part1 contains messages from year 1790 to 1860 and Part2 contains messages from 1946 to 2016. 
+First file contains 71 messages whereas File2 contains 970 messages.
+
+## Loading the Libraries
+
+Please import following python packages :
 ```{python}
-a = b+c
+import nltk as n
+import re
+from nltk.collocations import *
+
 ```
-**Academic** makes it easy to create a beautiful website for free using Markdown. Customize anything on your site with widgets, themes, and language packs.
+## Data Extraction
 
-Follow our easy [step by step guide](https://sourcethemes.com/academic/docs/install/) to learn how to build your own free website with Academic. [Check out the personal demo](https://academic-demo.netlify.com/) or the [business demo](https://sourcethemes.com/academic/) of what you'll get in less than 10 minutes.
+I have created the below function to extract the text from file.I have used Plain Text Corpus Reader of NLTK to access text files and treat them as regular corpora.
+I have accesses the name of the files by fileId()[0] and then reading all the text of the corpus.
 
-- [View the documentation](https://sourcethemes.com/academic/docs/)
-- [Ask a question](http://discuss.gohugo.io/)
-- [Request a feature or report a bug](https://github.com/gcushen/hugo-academic/issues)
-- Updating? View the [Update Guide](https://sourcethemes.com/academic/docs/update/) and [Release Notes](https://sourcethemes.com/academic/updates/)
-- Support development of Academic:
-  - [Donate a coffee](https://paypal.me/cushen)
-  - [Become a backer on Patreon](https://www.patreon.com/cushen)
-  - [Decorate your laptop or journal with an Academic sticker](https://www.redbubble.com/people/neutreno/works/34387919-academic)
-  - [Wear the T-shirt](https://academic.threadless.com/)
+```{python}
+def Get_Corpus(Text):
+    #reading
+    from nltk.corpus import PlaintextCorpusReader
+    corpus_read= PlaintextCorpusReader('.','.*\.txt')
+    Part= corpus_read.raw(Text)
+    Part_file= corpus_read.fileids()[0]
+    Part_string = corpus_read.raw(Part_file)
+    return Part_string
+```
+## Data Tokenization
 
-[![Screenshot](https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png)](https://github.com/gcushen/hugo-academic/)
+Word Tokenizer is used to divides a string into substrings by splitting on the specified string (currently nltk.tokenize.treebank.TreebankWordTokenizer along with nltk.tokenize.punkt.PunktSentenceTokenizer for the specified language).
 
-Key features:
+```{python}
+def Tokenize_Corpus(Words):
+    Corpus_Tokens = n.word_tokenize(Words) 
+    #strip() is used to remove extra whitespaces from the text
+    Tokens = [Token.strip() for Token in Corpus_Tokens]
+    return Tokens
+```
+## Making the text more meaningful
 
-- Easily manage various content including homepage, blog posts, publications, talks, and projects
-- Extensible via **color themes** and **widgets/plugins**
-- Write in [Markdown](https://sourcethemes.com/academic/docs/writing-markdown-latex/) for easy formatting and code highlighting, with [LaTeX](https://en.wikibooks.org/wiki/LaTeX/Mathematics) for mathematical expressions
-- Social/academic network linking, [Google Analytics](https://analytics.google.com), and [Disqus](https://disqus.com) comments
-- Responsive and mobile friendly
-- Simple and refreshing one page design
-- Multilingual and easy to customize
+Now, i have filtered the tokens by removing non-aplhabetical ([,],*,41). d) text using simple regex.
 
-## Color Themes
+```{python}
 
-Academic is available in different color themes and font themes.
+def Get_aplha_words(words):
+# pattern to match a word of non-alphabetical characters
+    pattern = re.compile('^[^a-z]+$')
+    if (pattern.match(words)):
+        return True
+    else:
+        return False
+```
 
-{{< gallery >}}
+## Let's Process it further :
 
-## Ecosystem
+I have lemmatize the text to reduce inflectional forms and sometimes derivationally related forms of a word to a common base form. \
+ [Lemmatization](https://en.wikipedia.org/wiki/Lemmatisation) is the algorithmic process of determining the lemma for a given word. Since the process may involve complex tasks such as understanding context and determining the part of speech of a word in a sentence (requiring, for example, knowledge of the grammar of a language) it can be a hard task to implement a lemmatiser for a new language. 
+\
+It takes a part of speech parameter, “pos” If not supplied, the default is “noun”. I have created a function called get_pos to get pos of the word in order to get lemma's.\
+For this, import another corpus reader "wordnet" and Counter to keep the count.
 
-* **[Academic Admin](https://github.com/sourcethemes/academic-admin):** An admin tool to import publications from BibTeX or import assets for an offline site
-* **[Academic Scripts](https://github.com/sourcethemes/academic-scripts):** Scripts to help migrate content to new versions of Academic
-
-## Install
-
-You can choose from one of the following four methods to install:
-
-* one-click install using your web browser (recommended)
-* install on your computer using Git with the Command Prompt/Terminal app
-* install on your computer by downloading the ZIP files
-* install on your computer with RStudio
-
-### Quick install using your web browser
-
-1. [Install Academic with Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/sourcethemes/academic-kickstart)
-    * Netlify will provide you with a customizable URL to access your new site
-2. On GitHub, go to your newly created `academic-kickstart` repository and edit `config.toml` to personalize your site. Shortly after saving the file, your site will automatically update
-3. Read the [Quick Start Guide](https://sourcethemes.com/academic/docs/) to learn how to add Markdown content. For inspiration, refer to the [Markdown content](https://github.com/gcushen/hugo-academic/tree/master/exampleSite) which powers the [Demo](https://academic-demo.netlify.com/)
-
-### Install with Git
-
-Prerequisites:
-
-* [Download and install Git](https://git-scm.com/downloads)
-* [Download and install Hugo](https://gohugo.io/getting-started/installing/#quick-install)
-
-1. [Fork](https://github.com/sourcethemes/academic-kickstart#fork-destination-box) the *Academic Kickstart* repository and clone your fork with Git: 
-
-        git clone https://github.com/sourcethemes/academic-kickstart.git My_Website
+```{python}
+def get_pos(word):
+    #another reader
+    from nltk.corpus import wordnet 
+    #synsets() is used to lookup a word
+    #pos argument is used to constrain the part of speech of the word
+    w_synsets = wordnet.synsets(word)
+    #for counting the 
+    from collections import Counter
+    pos_counts = Counter()
+    pos_counts["n"] = len([item for item in w_synsets if item.pos()=="n"])
+    pos_counts["v"] = len([item for item in w_synsets if item.pos()=="v"])
+    pos_counts["a"] = len([item for item in w_synsets if item.pos()=="a"])
+    pos_counts["r"] = len([item for item in w_synsets if item.pos()=="r"])
     
-    *Note that if you forked Academic Kickstart, the above command should be edited to clone your fork, i.e. replace `sourcethemes` with your GitHub username.*
+    most_common_pos_list = pos_counts.most_common(3)
+    # first index for getting the top POS from list, second index for getting POS from tuple
+    return most_common_pos_list[0][0]
+```
+ 
+The below function is then used to fetch the base form :\
+```{python}
 
-2. Initialize the theme:
+def lemmatize_text(word):
+    # NLTK has a lemmatizer that uses WordNet as a dictionary
+    from collections import Counter 
+    # To get words in dictionary with their parts of speech
+    from nltk.corpus import wordnet 
+    # lemmatizes word based on it's parts of speech
+    from nltk.stem import WordNetLemmatizer
+    wnl = WordNetLemmatizer()
+    lemma_words=[wnl.lemmatize(t, get_pos(t)) for t in word]  
 
-        cd My_Website
-        git submodule update --init --recursive
-
-### Install with ZIP
-
-1. [Download](https://github.com/sourcethemes/academic-kickstart/archive/master.zip) and extract *Academic Kickstart*
-2. [Download](https://github.com/gcushen/hugo-academic/archive/master.zip) and extract the *Academic theme* to the `themes/academic/` folder from the above step
-
-### Install with RStudio
-
-[View the guide to installing Academic with RStudio](https://sourcethemes.com/academic/docs/install/#install-with-rstudio)
-
-## Quick start
-
-1. If you installed on your computer, view your new website by running the following command:
-      
-        hugo server
-
-    Now visit [localhost:1313](http://localhost:1313) and your new Academic powered website will appear. Otherwise, if using Netlify, they will provide you with your URL.
-           
-2. Read the [Quick Start Guide](https://sourcethemes.com/academic/docs/) to learn how to add Markdown content, customize your site, and deploy it. For inspiration, refer to the [Markdown content](https://github.com/gcushen/hugo-academic/tree/master/exampleSite) which powers the [Demo](https://academic-demo.netlify.com/)
-
-3. Build your site by running the `hugo` command. Then [host it for free using Github Pages](https://georgecushen.com/create-your-website-with-hugo/) or Netlify (refer to the first installation method). Alternatively, copy the generated `public/` directory (by FTP, Rsync, etc.) to your production web server (such as a university's hosting service).
-
-## Updating
-
-Feel free to *star* the project on [Github](https://github.com/gcushen/hugo-academic/) to help keep track of updates and check out the [release notes](https://sourcethemes.com/academic/updates) prior to updating your site.
-
-Before updating the framework, it is recommended to make a backup of your entire website directory (or at least your `themes/academic` directory) and record your current version number.
-
-By default, Academic is installed as a Git submodule which can be updated by running the following command:
-
-```bash
-git submodule update --remote --merge
+    return lemma_words
 ```
 
-[Check out the update guide](https://sourcethemes.com/academic/docs/update/) for full instructions and alternative methods.
+Now, at the end remove the stop words since they don't make any sense.
+I have added some stop words after looking at the tokens to the default stop words list.
 
-## Feedback & Contributing
+```{python}
+def remove_stopwords(words):
+    stopwords = n.corpus.stopwords.words('english')
+    #custom stop words, not much meaningful for analysis point of view
+    stopwords = stopwords + ['ebook', 'ebooks', 'january', 'february', 'march',
+                            'april', 'may', 'june', 'july', 'august',
+                            'september', 'october', 'november', 'december',
+                             'state','address','copyright','union']
 
-Please use the [issue tracker](https://github.com/gcushen/hugo-academic/issues) to let me know about any bugs or feature requests, or alternatively make a pull request.
+    filter2_words = [w for w in words if w not in stopwords]
+    return filter2_words]
+```
 
-For support, head over to the [Hugo discussion forum](http://discuss.gohugo.io).
+## Which are the Top frequency words?
 
-## License
+I have extracted Top 50 words by frequency normalized by the length of the document. I have filtered the frequency by normalizing it against length of filtered Tokens.\
+This means that distribution will give scores on behalf of filtered tokens not the whole document. It is slightly different from the term frequency concept where frequency of every token is retrieved against multiple documents.\
+The reason, i am using the filtered words list for the length of document because, taking the raw corpus length will not give any good results because it contains text which is not useful at all and hence removed from token list.\
+Import FreqDist package to count tota occurance of same token in a corpus. 
 
-Copyright 2016-present [George Cushen](https://georgecushen.com).
+```{python}
+def Top50_freq(w):
+    from nltk import FreqDist
+    words={}
+    Part1dist = FreqDist(w)
+    d = dict(Part1dist.most_common(50))
+    for token,f in d.items():
+        #normalizing it by length of filtered document w
+         words[token]=f/float(len(w))
+    return words
+    
+```
+## Are there any Bigrams?
 
-Released under the [MIT](https://github.com/gcushen/hugo-academic/blob/master/LICENSE.md) license.
+Another	way	to	look	for	interesting	characterizations	of	a	corpus	is	to	look	at	pairs	of words	that	are	frequently	collocated,	that	is,	they	occur	in	a	sequence	called	a	bigram.
+(The	nltk.bigrams()	function	returns	a	generator, but	we	can	turn	it	into	a	list	by	applying	
+the	type	‘list’	to	it	as	a	function.)\
+For more simplicity, i have combind the filteration steps in the below function once again.
+Collocation is a sequence of words that occur together unusually often.
+The collocations package provides collocation finders which by default consider all ngrams in a text as candidate collocations.
+\
+I have used bigram_with_filter() function to apply various filter functions to finder.I have first applied Get_aplha_words() function to get only alphabetical words. Then further I have applied filter to remove stop words. Now, here I am not lemmatizing the words, so I have included ‘addresses’ also in stop words list.\
+At last I have applied filter to get words having minimum frequency 0f 2 since otherwise result will not be much helpful. The scores are sorted in order of decreasing frequency. The Result has given the top 50 bigrams by frequencies of meaningful important bigrams.
+```{python}
+# setup for bigrams and bigram measures
+from nltk.corpus import stopwords
+
+def bigram_with_filter(w):
+    finder = BigramCollocationFinder.from_words(w)
+    bigram_measures = n.collocations.BigramAssocMeasures()
+    stopwords = n.corpus.stopwords.words('english')
+    #custom stop word
+    stopwords = stopwords + ['ebook', 'ebooks', 'january', 'february', 'march',
+                            'april', 'may', 'june', 'july', 'august',
+                            'september', 'october', 'november', 'december',
+                             'state','address','copyright','union','addresses']
+    # apply a filter to remove non-alphabetical tokens
+    finder.apply_word_filter(Get_aplha_words)
+    #removed low frequency words
+    finder.apply_freq_filter(2)
+    # apply a filter to remove stop words
+    finder.apply_word_filter(lambda w: w in stopwords)
+    scored = finder.score_ngrams(bigram_measures.raw_freq)   
+    for bscore in scored[:50]:
+        print (bscore)
+        
+```
+## Frequency by Mutual Information Scores
+
+Mutual Information is a score introduced in the paper by Church and Hanks, where they defined it as an Association Ratio. Note that technically the original information theoretic definition of mutual information allows the two words to be in either order, but that the association ratio defined by Church and Hanks requires the words to be in order from left to right wherever they appear in the window
+In NLTK, the mutual information score is given by a function for Pointwise Mutual Information, where this is the version without the window.\
+Here, Apply	the	non-alphabetical	and	stopword	filters,	noting	that	the	filters	substantially	reduce the	numbers	of	bigrams	scored.
+\
+When	you	apply	the	Mutual	Information	score	to	small	documents,	the	results	don’t	really make	sense.		In	particular,	here	all	our	scores	are	the	same.		It	is	recommended	to	run	the	
+PMI	scorer	with	a	minimum	frequency	of	5,	which	will	make	more	sense	on	very	large	 documents.\
+Then,I have run PMI score with a minimum frequency because it will not be useful to apply the Mutual Information score to all the bigrams as results don’t really make sense and expressions are also very infrequent, because uniquely occurring pairs of words get high scores. Thus, it will be good to filter it, to make sense for very heavy documents.PMI gives strange results when frequencies are very low e.g. 1-3 tokens, thus set a minimum frequency for the collocates, which takes care of most of the problem. \
+The result has given me the bigram pairs which are frequent by their associativity.
+
+
+```{python}
+def Top50bigrams_MutualInfoScore(w):  
+    finder2 = BigramCollocationFinder.from_words(w)
+    bigram_measures = n.collocations.BigramAssocMeasures()
+    stopwords =  n.corpus.stopwords.words('english')
+    stopwords = stopwords + ['ebook', 'ebooks', 'january', 'february', 'march',
+                            'april', 'may', 'june', 'july', 'august',
+                            'september', 'october', 'november', 'december',
+                             'state','address','copyright','union','addresses']
+    # apply a filter to remove non-alphabetical tokens
+    finder2.apply_word_filter(Get_aplha_words)
+    finder2.apply_word_filter(lambda w: w in stopwords)
+    finder2.apply_freq_filter(5)
+    scored = finder2.score_ngrams(bigram_measures.pmi)
+    for bscore in scored[:50]:
+        print (bscore)
+```
+
+## Let's Apply all above to data
+
+Here, finally i have combined all the code into two separate functions one for each part.\
+
+For Part-1 :\
+```{python}
+def Part_1_execution():
+    #fetching the corpus
+    Part_string=Get_Corpus('state_union_part1.txt')
+    #Tokenization
+    Tokens=Tokenize_Corpus(Part_string)
+    #lowercase conversion after fetching alphabetical words
+    Part1_filter1_words= [w.lower() for w in Tokens if not Get_aplha_words(w)]
+    #Lemmatization
+    Part1_filter2_words=lemmatize_text(Part1_filter1_words)
+    #Removal of Stop Words
+    Part1_filter3_words=remove_stopwords(Part1_filter2_words)
+    #Functions calling and Results
+    Top50_freq_words=Top50_freq(Part1_filter3_words)
+    print("####################### PROBLEM-2(STATE UNION PART-1 FILE) ##########################")
+    print("#############################Top 50 words by frequency###########")
+    print (Top50_freq_words)
+    print("##################### Top 50 Bigrams by frequency ##################################")
+    bigram_with_filter(Tokens)
+    print("###################### Top 50 Bigrams by thier Mutual Information Scores ########################")
+    Top50bigrams_MutualInfoScore(Tokens)
+```
+For Part-2 :\
+
+```{python}
+def Part_2_execution():
+    #fetching the corpus
+    Part_string=Get_Corpus('state_union_part2.txt')
+    #Tokenization
+    Tokens=Tokenize_Corpus(Part_string)
+    #lowercase conversion after fetching alphabetical words
+    Part2_filter1_words= [w.lower() for w in Tokens if not Get_aplha_words(w)]
+    #lemmatization
+    Part2_filter2_words=lemmatize_text(Part2_filter1_words)
+    #Stop words Removal
+    Part2_filter3_words=remove_stopwords(Part2_filter2_words)
+    #Functions calling and results
+    Top50_freq_words=Top50_freq(Part2_filter3_words)
+    print("####################### PROBLEM-3 (STATE UNION PART-2 FILE) ##########################")
+    print("##################### Top 50 words by frequency #############################")
+    print (Top50_freq_words)
+    print("######################## Top 50 Bigrams by frequency ###############################")
+    bigram_with_filter(Tokens)
+    print("###################### Top 50 Bigrams by thier Mutual Information Scores ########################")
+    Top50bigrams_MutualInfoScore(Tokens)
+```
+
+## Any Differences ?
+
+Both the Text Files, state_union_part1 and state_union_part2 are similar in terms of the language. The reason behind this is, that they are written by the same author and thus have the similar writing style and kinds of words used are also similar. Also, the author has used same words in both files in writing the speeches. \
+The Top-50 frequency words are also giving quite similar results for both the documents. This is the reason, I have filtered the tokens of both the files in same manner because, both the files are written by James Linden. \
+The only difference is the speeches and their delivered time.
+
+## Are there any problems with the word or bigram lists that you found? Could you get a better list of bigrams?
+
+I found some words which have multiple ‘*’ as a prefix or suffix in tokens of both the documents. Such words don’t appear in the Top-50 bigram, as they are few. \
+As per my analysis, Bigram’s list currently contains important pair of words but however they can be improved on further filtering like we can change minimum frequency and then check the results and decide accordingly.
+
+## How are the top 50 bigrams by frequency different from the top 50 bigrams scored by Mutual Information?
+
+For both the documents Part1 and Part2, Top-50 bigrams and Top-50 bigrams scored by Mutual Information are different due to following reasons: \
+\
+1. The bigrams which I got from bigram_with_filter() function, has words which are important and meaningful for analysis. I have applied minimum frequency of 2 as a filter to remove low frequency words whereas minimum frequency is 5 in case of bigrams by mutual information scores.The above tokens are used together in speeches many a times which means and thus, they are high in frequency. \
+\
+2. The bigrams which I got from Top50bigrams_MutualInfoScore() function are different and not that useful because they are not common words and are of low frequency. Also, they give poor result when frequency is low (0-2) and that’s because I have applied frequency filter 5. The results given by the top 50 bigrams scored by Mutual Information, are highly associative but not useful in terms of analysis. \
+\
+3. Mutual Information score cannot be applied to all the bigrams(unfiltered), because the results don’t really make sense, since uniquely occurring pairs of words get high scores. Whereas, Bigrams can be applied to filtered or unfiltered words.
+
+You can also refer to the [NLTK Book](http://www.gutenberg.org/) for  any doubts on the concepts.
+
+
+
+
+
+
+
