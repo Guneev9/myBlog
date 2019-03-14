@@ -343,13 +343,7 @@ For both the documents, Top-50 bigrams scored by Mutual Information are differen
 \
 2. The bigrams we got from Top50bigrams_MutualInfoScore() function are not common words and are of low frequency. They give poor result when frequency is low (0-2) because of frequency filter 5. The results given by the top 50 bigrams scored by Mutual Information, are highly associative but not useful in terms of analysis.  \
 \
-3. Mutual Information score cannot be applied to all the bigrams(unfiltered), because the results don’t really make sense, since uniquely occurring pairs of words get high scores. Whereas, Bigrams can be applied to filtered or unfiltered words.
+3. Mutual Information score cannot be applied to all the bigrams(unfiltered), because the results don’t really make sense, since uniquely occurring pairs of words get high scores whereas bigrams can be applied to filtered or unfiltered words.
 
 You can also refer to the [NLTK Book](http://www.gutenberg.org/) for  any doubts on the concepts.
-
-
-
-
-
-
 
