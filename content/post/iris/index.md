@@ -2,8 +2,8 @@
 title = "Visualization with Tableau"
 subtitle = "Cluster Analysis using Tableau"
 
-date = 2016-04-20T00:00:00
-lastmod = 2018-01-13T00:00:00
+date = 2019-03-13T00:00:00
+lastmod = 2019-03-13T00:00:00
 draft = false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -78,55 +78,52 @@ caption = "Cupcake"
 
 ## Iris Data Set
 
-For learning basics of Tableau, I am using the very famous [Iris ](https://archive.ics.uci.edu/ml/machine-learning-databases/iris/) Dataset from the UCI Machine Learning Repository.
+For learning the basics of Tableau, we'll use the very famous [Iris ](https://archive.ics.uci.edu/ml/machine-learning-databases/iris/) Dataset. It is available from the UCI Machine Learning Repository.
 \
-This is a  simple data set with 150 instances and 4 attributes and a class namely, sepal length, sepal width, petal length, petal width and the class attribute which has three classes, namely, Iris Setosa, Iris versicolor and Iris Virginica.
+This is a  simple data set with 150 records and 4 attributes. The 4 instances are sepal length, sepal width, petal length, and petal width. There is a class attribute which has three values: Iris Setosa, Iris versicolor and Iris Virginica.
 
 ## Connecting to the Source
 
-Let's connect to the above data text files into Tableau.We can view the various instances and attributes of our dataset.
+Let's import the above data text files into Tableau. We can view the various instances and attributes of our dataset.
 Here, we can also change the data type of the various attributes.
 
 ![alt text](T1.jpg)
 
 ## Dimensions and Measures
 
-By default all the numerical fields are categorised as  "Measures" and all the categorical data is termed as "Dimensions". So in our case, Species is a dimension and all other attributes are meansures.
+By default, Tableau marks all the numerical fields as "Measures" and all the categorical fields as "Dimensions". So in our case, Species is a dimension and all other attributes are meansures.
 
 ## Clustering 
 
-Clustering is the group of a set of observations into subsets (called clusters) so that observations in the same cluster are similar in some sense. \
+Clustering is grouping a set of observations into subsets (called clusters) so that observations in the same cluster are similar in some sense. \
 We will perform the analysis in both Tableau and R using the same Iris data.
 
 ## Let's Do it 
 
-First, i have launched a new sheet and renamed it to Iris1.Drag the measures petal length, petal width to columns and sepal length, width to rows.
+First, we launch a new sheet and rename it to Iris1. Drag the measures petal length, petal width to columns and sepal length, width to rows.
 
 ![alt text](T2.jpg)
 
-Next, I have disabled aggregation of measures by going to the Analysis and then click on Aggregate Measures.You will see a change in your sheet. \
+Next, we disable aggregation of measures. Go to the Analysis and click on Aggregate Measures.You will see a change in your sheet. \
 
 ![alt text](T4.jpg)
 
-I am analyzing all the 4 measures, for simplicity you can also choose 2 measures. \
-Now, if you have observed the above figure, the above scatter-plots does not differentiate between any of the species. But in this case, the since the Iris data set already has a class specifying flower species of above measures. \
-So let's see it by dragging ‘Species’ dimension to the  color which shows the distinct species groups as below:\
+We are analyzing all the 4 measures. You can select different measures from the measures section. \
+The above scatter-plots do not differentiate between any of the species. In the the Iris data set, the class atttribute specifies the flower species. \
+We can differentiate between the different species by giving them different colors. We can do this by dragging ‘Species’ dimension to the color box under Marks which shows the distinct species groups as below:\
 ![alt text](T3.jpg)
 You can also choose other colors by clicking on the "Color" tab.
 
-## What if there is No Existing Dimension ?
+## What if there is no existing class ?
 
-In the above data set, we see that there is already a species dimension but let's imagine we don't have any given class and  we wanteto identify the clusters based on the given 4 measures.\
-Lets explore how it can be done using Cluster Analysis.I am creating a new Sheet with name "Iris2" and once again i will start with the initial plot we had.
+In the above data set, we see that there is already a species class. What if we don't have a class and want to identify the clusters based on the given 4 measures. We can do this through Cluster Analysis.\
+Create a new sheet ("Iris2") and follow the previous steps to recreate the plot.
 ![alt text](T5.jpg)
-Now, go to the  Analytics tab, and drag ‘Clusters’ as shown in the figure below. Tableau automatically identifies the number of clusters. 
+Now, go to the  Analytics tab, and drag ‘Clusters’ as shown in the figure below. Tableau automatically identifies the best number of clusters. 
 ![alt text](T6.jpg)
 
-I have changed the color for better understanding. You can see that Tableau created the same 3 clusters which we created using the species dimenion.
+I have changed the color for better understanding in the nexet figure. You can see that Tableau created the 3 clusters quite similar to we got using the species class.
 
 ![alt text](T7.jpg)
 
 This is just a simple anaysis using Tableau. You can try the same with another dataset.
-
-
-

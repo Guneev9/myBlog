@@ -2,8 +2,8 @@
 title = "Exploring state of Union Addresses Data"
 subtitle = "Analysis of state of Union Addresses"
 
-date = 2016-04-20T00:00:00
-lastmod = 2018-01-13T00:00:00
+date = 2019-03-13T00:00:00
+lastmod = 2019-03-13T00:00:00
 draft = false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -77,12 +77,11 @@ caption = "Cupcake"
 +++
 
 ## State Of Union Data Set
-The State of the Union Addresses dataset is a collection of annual speeches delivered by the presidents of the United States, from George Washington to Barack Obama, to a joint session of the United States Congress for the span of 1790-2016. This dataset contains the two texts combined, which are small subsets of the Project Gutenberg Ebook corpus. Here is the Project Gutenberg Ebook [web page](http://www.gutenberg.org/)
+The State of the Union Addresses dataset is a collection of annual speeches delivered by the presidents of the United States. It ranges from George Washington to Barack Obama, to a joint session of the United States Congress for the span of 1790-2016. This dataset contains the two texts combined, which are small subsets of the Project Gutenberg Ebook corpus. Here is the Project Gutenberg Ebook [web page](http://www.gutenberg.org/)
 
-Data can be found at the link [Source Data](https://github.com/Guneev9/State-of-the-Union-Addresses-NLP-)
+You can find the data [here](https://github.com/Guneev9/State-of-the-Union-Addresses-NLP-)
 
-Both the files are written by the same author 'James Linden'. Every message has sections indicating to whom it is being cited. Naming Convention: Content of files have index convention: President Name followed by Title "State of Union Address" followed by the Date, when message has been delivered. The messages have been sorted on basis of year, it is being delivered. Part1 contains messages from year 1790 to 1860 and Part2 contains messages from 1946 to 2016. 
-First file contains 71 messages whereas File2 contains 970 messages.
+James Linden’ has composed both the files. Every message has sections indicating to whom it is being cited. Naming convention is President Name followed by Title “State of Union Address” followed by the Date of address. The messages have been sorted on the basis of year it was delivered. Part 1 contains messages from year 1790 to 1860 and Part 2 contains messages from 1946 to 2016. First file contains 71 messages whereas File 2 contains 970 messages.
 
 ## Loading the Libraries
 
@@ -95,8 +94,7 @@ from nltk.collocations import *
 ```
 ## Data Extraction
 
-I have created the below function to extract the text from file.I have used Plain Text Corpus Reader of NLTK to access text files and treat them as regular corpora.
-I have accesses the name of the files by fileId()[0] and then reading all the text of the corpus.
+We create the below function to extract the text from file. I have used Plain Text Corpus Reader of NLTK to access text files and treat them as regular corpora. We access the name of the files by fileId()[0] and then reading all the text of the corpus.
 
 ```{python}
 def Get_Corpus(Text):
@@ -110,7 +108,7 @@ def Get_Corpus(Text):
 ```
 ## Data Tokenization
 
-Word Tokenizer is used to divides a string into substrings by splitting on the specified string (currently nltk.tokenize.treebank.TreebankWordTokenizer along with nltk.tokenize.punkt.PunktSentenceTokenizer for the specified language).
+We use word tokenizer to divide a string into substrings by splitting on the specified string.
 
 ```{python}
 def Tokenize_Corpus(Words):
@@ -121,7 +119,7 @@ def Tokenize_Corpus(Words):
 ```
 ## Making the text more meaningful
 
-Now, i have filtered the tokens by removing non-aplhabetical ([,],*,41). d) text using simple regex.
+Now we filter the tokens by removing non-aplhabetical ([,],*,41). d) text using simple regex.
 
 ```{python}
 
@@ -136,11 +134,12 @@ def Get_aplha_words(words):
 
 ## Let's Process it further :
 
-I have lemmatize the text to reduce inflectional forms and sometimes derivationally related forms of a word to a common base form. \
- [Lemmatization](https://en.wikipedia.org/wiki/Lemmatisation) is the algorithmic process of determining the lemma for a given word. Since the process may involve complex tasks such as understanding context and determining the part of speech of a word in a sentence (requiring, for example, knowledge of the grammar of a language) it can be a hard task to implement a lemmatiser for a new language. 
-\
-It takes a part of speech parameter, “pos” If not supplied, the default is “noun”. I have created a function called get_pos to get pos of the word in order to get lemma's.\
-For this, import another corpus reader "wordnet" and Counter to keep the count.
+Our next step involves [lemmatisation](https://en.wikipedia.org/wiki/Lemmatisation). Its aim is to remove conjugational endings, and to return the base form of a word, known as the lemma. For example: Conjugational form of word Organize (base form) is Organizing, organizes etc.
+
+Since the process may involve complex tasks such as understanding context and determining the part of speech(pos) of a word in a sentence, it can be a hard task to implement a lemmatiser for a new language. 
+
+It takes a part of speech parameter, “pos”. If not supplied, the default is “noun”. We create a function called get_pos to get pos of the word to get lemma’s.
+For this, import another corpus reader “wordnet” and Counter to keep the count.
 
 ```{python}
 def get_pos(word):
@@ -178,7 +177,7 @@ def lemmatize_text(word):
     return lemma_words
 ```
 
-Now, at the end remove the stop words since they don't make any sense.
+Now, we remove the stop words since they don't make any sense.
 I have added some stop words after looking at the tokens to the default stop words list.
 
 ```{python}
@@ -196,9 +195,10 @@ def remove_stopwords(words):
 
 ## Which are the Top frequency words?
 
-I have extracted Top 50 words by frequency normalized by the length of the document. I have filtered the frequency by normalizing it against length of filtered Tokens.\
-This means that distribution will give scores on behalf of filtered tokens not the whole document. It is slightly different from the term frequency concept where frequency of every token is retrieved against multiple documents.\
-The reason, i am using the filtered words list for the length of document because, taking the raw corpus length will not give any good results because it contains text which is not useful at all and hence removed from token list.\
+We extract top 50 words by frequency normalized by the length of the document. We filter the frequency by normalizing it against length of filtered Tokens.\
+This means that the distribution will give scores on behalf of filtered tokens, not the whole document.\
+We use the filtered words list for the length of document instead of taking the raw corpus length. This is because the latter case will not give any good results since it contains text which is not useful at all. Hence, we remove those tokens from the token list.\
+
 Import FreqDist package to count tota occurance of same token in a corpus. 
 
 ```{python}
@@ -218,12 +218,10 @@ def Top50_freq(w):
 Another	way	to	look	for	interesting	characterizations	of	a	corpus	is	to	look	at	pairs	of words	that	are	frequently	collocated,	that	is,	they	occur	in	a	sequence	called	a	bigram.
 (The	nltk.bigrams()	function	returns	a	generator, but	we	can	turn	it	into	a	list	by	applying	
 the	type	‘list’	to	it	as	a	function.)\
-For more simplicity, i have combind the filteration steps in the below function once again.
-Collocation is a sequence of words that occur together unusually often.
-The collocations package provides collocation finders which by default consider all ngrams in a text as candidate collocations.
+For more simplicity, we combine the filteration steps in the function below once again. Collocation is a sequence of words that occur together unusually often. The collocations package provides collocation finders which by default consider all ngrams in a text as candidate collocations. 
 \
-I have used bigram_with_filter() function to apply various filter functions to finder.I have first applied Get_aplha_words() function to get only alphabetical words. Then further I have applied filter to remove stop words. Now, here I am not lemmatizing the words, so I have included ‘addresses’ also in stop words list.\
-At last I have applied filter to get words having minimum frequency 0f 2 since otherwise result will not be much helpful. The scores are sorted in order of decreasing frequency. The Result has given the top 50 bigrams by frequencies of meaningful important bigrams.
+We use bigram_with_filter() function to apply various filter functions to finder. We first apply Get_aplha_words() function to get only alphabetical words. Then further we apply filter to remove stop words. We are not lemmatizing the words, so we include ‘addresses’ also in stop words list.
+At last we apply filter to get words having least frequency of 2 since otherwise result will not be much helpful. We sort the scores in order of decreasing frequency. The Result has given the top 50 bigrams by frequencies of meaningful important bigrams.
 ```{python}
 # setup for bigrams and bigram measures
 from nltk.corpus import stopwords
@@ -257,7 +255,6 @@ Here, Apply	the	non-alphabetical	and	stopword	filters,	noting	that	the	filters	s
 When	you	apply	the	Mutual	Information	score	to	small	documents,	the	results	don’t	really make	sense.		In	particular,	here	all	our	scores	are	the	same.		It	is	recommended	to	run	the	
 PMI	scorer	with	a	minimum	frequency	of	5,	which	will	make	more	sense	on	very	large	 documents.\
 Then,I have run PMI score with a minimum frequency because it will not be useful to apply the Mutual Information score to all the bigrams as results don’t really make sense and expressions are also very infrequent, because uniquely occurring pairs of words get high scores. Thus, it will be good to filter it, to make sense for very heavy documents.PMI gives strange results when frequencies are very low e.g. 1-3 tokens, thus set a minimum frequency for the collocates, which takes care of most of the problem. \
-The result has given me the bigram pairs which are frequent by their associativity.
 
 
 ```{python}
@@ -278,9 +275,11 @@ def Top50bigrams_MutualInfoScore(w):
         print (bscore)
 ```
 
+The result has given us the bigram pairs which are frequent by their associativity.
+
 ## Let's Apply all above to data
 
-Here, finally i have combined all the code into two separate functions one for each part.\
+Finally, we combine all the code into two separate functions, one for each part.\
 
 For Part-1 :\
 ```{python}
@@ -332,22 +331,17 @@ def Part_2_execution():
 
 ## Any Differences ?
 
-Both the Text Files, state_union_part1 and state_union_part2 are similar in terms of the language. The reason behind this is, that they are written by the same author and thus have the similar writing style and kinds of words used are also similar. Also, the author has used same words in both files in writing the speeches. \
-The Top-50 frequency words are also giving quite similar results for both the documents. This is the reason, I have filtered the tokens of both the files in same manner because, both the files are written by James Linden. \
+Both the files have similar language because they are written by the same author and thus have the similar writing style with similar kind of words. Also, the author has used same words in both the files in writing the speeches. \
+Because of the same reason, the Top-50 frequency words also give similar results for both the documents. \
 The only difference is the speeches and their delivered time.
-
-## Are there any problems with the word or bigram lists that you found? Could you get a better list of bigrams?
-
-I found some words which have multiple ‘*’ as a prefix or suffix in tokens of both the documents. Such words don’t appear in the Top-50 bigram, as they are few. \
-As per my analysis, Bigram’s list currently contains important pair of words but however they can be improved on further filtering like we can change minimum frequency and then check the results and decide accordingly.
 
 ## How are the top 50 bigrams by frequency different from the top 50 bigrams scored by Mutual Information?
 
-For both the documents Part1 and Part2, Top-50 bigrams and Top-50 bigrams scored by Mutual Information are different due to following reasons: \
+For both the documents, Top-50 bigrams scored by Mutual Information are different due to following reasons:  \
 \
-1. The bigrams which I got from bigram_with_filter() function, has words which are important and meaningful for analysis. I have applied minimum frequency of 2 as a filter to remove low frequency words whereas minimum frequency is 5 in case of bigrams by mutual information scores.The above tokens are used together in speeches many a times which means and thus, they are high in frequency. \
+1. The bigrams which we got from bigram_with_filter() function have words which are important and meaningful for analysis. We have applied minimum frequency of 2 as a filter to remove low frequency words whereas minimum frequency is 5 in case of bigrams by mutual information scores. The above tokens are used together in speeches many a times; hence, they are high in frequency. \
 \
-2. The bigrams which I got from Top50bigrams_MutualInfoScore() function are different and not that useful because they are not common words and are of low frequency. Also, they give poor result when frequency is low (0-2) and that’s because I have applied frequency filter 5. The results given by the top 50 bigrams scored by Mutual Information, are highly associative but not useful in terms of analysis. \
+2. The bigrams we got from Top50bigrams_MutualInfoScore() function are not common words and are of low frequency. They give poor result when frequency is low (0-2) because of frequency filter 5. The results given by the top 50 bigrams scored by Mutual Information, are highly associative but not useful in terms of analysis.  \
 \
 3. Mutual Information score cannot be applied to all the bigrams(unfiltered), because the results don’t really make sense, since uniquely occurring pairs of words get high scores. Whereas, Bigrams can be applied to filtered or unfiltered words.
 
