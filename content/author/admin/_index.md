@@ -77,4 +77,4 @@ An avid lover of animals, a data enthusiast by choice and an artist by nature. G
 
 Realizing her interests in data analysis and problem-solving, Guneev decided to pursue it further through a Master's degree. From the start of her journey, she has had an aspiration of being a thought leader in the field of business intelligence. She has acquired new knowledge and unforgettable experiences in actualizing this. Her recent step in that direction has been gaining healthcare experience as an intern at Siemens Healthineers, New Jersey. 
 
-Guneev is a jovial individual with a soft spot for disney. She spends her free time with sketching, painting ad cooking.
+Guneev is a jovial individual with a soft spot for disney. She spends her free time with sketching, painting and cooking.
