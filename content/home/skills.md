@@ -105,4 +105,27 @@ weight = 30
   name = "VBScript"
   description = ""
 
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "VBScript"
+  description = "RShiny"
+  
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "VBScript"
+  description = "Postgres" 
+  
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "VBScript"
+  description = "TSQL" 
+  
+[[feature]]
+  icon = ""
+  icon_pack = ""
+  name = "VBScript"
+  description = "Data Mining"   
 +++
